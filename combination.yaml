@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Resources:
+  FechamentoFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: br.com.at.lambda.lotofacil.combination.handler.CombinationHandler::handleRequest
+      Runtime: java8
+      Timeout: 40
+      Events:
+        Fechamento:
+          Type: Api
+          Properties:
+            Path: /fechamento
+            Method: POST
