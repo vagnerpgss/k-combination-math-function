@@ -1,6 +1,6 @@
 # COMBINATION - LAMBDA FUNCTION
 
-Repositório para a função Lambda de Combinação
+Implementation of a simple mathematical combination algorithm where the order of the elements in the grouping does not interfere with the result. The algorithm runs on the architecture of Lambda AWS functions.
 
 ## Requirements
 
