@@ -6,12 +6,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "numbers"
+    "total",
+    "numbers"
 })
 public class CombinationRequest {
 
+    @JsonProperty("total")
+    private Integer total = null;
+
     @JsonProperty("numbers")
     private Integer[] numbers = null;
+
+    @JsonProperty("total")
+    public Integer getTotal() {
+        return total;
+    }
+
+    @JsonProperty("total")
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
 
     @JsonProperty("numbers")
     public Integer[] getNumbers() {
