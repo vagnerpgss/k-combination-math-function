@@ -6,25 +6,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Combinacao {
+public class Combination {
 
     private int r;
-    private Integer[] entrada;
+    private Integer[] input;
     private int MAX;
     private int N;
 
     /**
-     * se r for zero entao iremos fazer todas as combinacoes (com qualquer quantidade de elementos).
+     * if r is zero then all combinations will be done (with any number of elements).
      */
-    public Combinacao(Integer[] entrada, int r) {
+    public Combination(Integer[] input, int r) {
         this.r = r;
-        this.entrada = entrada;
-        this.MAX = ~(1 << entrada.length);
+        this.input = input;
+        this.MAX = ~(1 << input.length);
         this.N = 1;
     }
 
     /**
-     * Retorna true quando ha pelo menos uma combinacao disponivel.
+     * return true when there is at least one combination available.
      */
     public boolean hasNext() {
         if (r != 0) {
@@ -35,7 +35,7 @@ public class Combinacao {
     }
 
     /**
-     * Retorna a quantidade de bits ativos (= 1) de N.
+     * return the total amount of bits for N.
      */
     private int countbits() {
         int i;
@@ -54,10 +54,10 @@ public class Combinacao {
     }
 
     /**
-     * Util para obter o tamanho da saida. Esse tamanho eh o numero de posicoes do
-     * vetor retornado por next.
+     * useful to obtain the size of the input.
+     * this size is the number of positions of the vector returned by next.
      */
-    public int getSaidaLength() {
+    public int getOutputLength() {
         if (r != 0) {
             return r;
         }
@@ -65,32 +65,32 @@ public class Combinacao {
     }
 
     /**
-     * Retorna uma combinacao.
+     * return one combination
      * <p>
-     * ATENCAO: Sempre use next() quando se tem certeza que ha uma combinacao
-     * disponivel. Ou seja, sempre use next() quando hasNext() retornar true.
+     * ATTENTION: Always use next() when you are sure that a combination is available.
+     * That is, always use next() when hasNext() returns true.
      */
     public Integer[] next() {
-        int saida_index, entrada_index, i;
+        int output_index, input_index, i;
 
-        Integer[] saida = new Integer[this.getSaidaLength()];
+        Integer[] output = new Integer[this.getOutputLength()];
 
-        entrada_index = 0;
-        saida_index = 0;
+        input_index = 0;
+        output_index = 0;
         i = 1;
 
         while ((this.MAX & i) != 0) {
             if ((this.N & i) != 0) {
-                saida[saida_index] = entrada[entrada_index];
-                saida_index += 1;
+                output[output_index] = input[input_index];
+                output_index += 1;
             }
-            entrada_index += 1;
+            input_index += 1;
             i = i << 1;
         }
 
         N += 1;
 
-        return saida;
+        return output;
     }
 
 }

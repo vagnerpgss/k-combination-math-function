@@ -1,10 +1,10 @@
-package br.com.at.lambda.lotofacil.combination.handler;
+package br.com.at.lambda.combination.handler;
 
 
 import br.com.at.lambda.exception.BadRequestException;
-import br.com.at.lambda.calc.Combinacao;
-import br.com.at.lambda.lotofacil.combination.domain.CombinationRequest;
-import br.com.at.lambda.lotofacil.combination.domain.CombinationResponse;
+import br.com.at.lambda.calc.Combination;
+import br.com.at.lambda.combination.domain.CombinationRequest;
+import br.com.at.lambda.combination.domain.CombinationResponse;
 import br.com.at.lambda.model.ServerlessInput;
 import br.com.at.lambda.model.ServerlessOutput;
 import br.com.at.lambda.util.Util;
@@ -57,30 +57,30 @@ public class CombinationHandler implements RequestHandler<ServerlessInput, Serve
         if (length >= 15) {
             return getDesdobramentoResponse(combinationRequest, length);
         } else {
-            return getFechamentoResponse(combinationRequest, length);
+            return getCombinationResponse(combinationRequest, length);
         }
     }
 
-    private CombinationResponse getFechamentoResponse(CombinationRequest combinationRequest, int length) {
-        Combinacao combinacao = new Combinacao(Util.getNumerosAusentes(combinationRequest.getNumbers()), 15 - length);
-        Integer[][] bets = new Integer[Util.getInitializer(length)][];
+    private CombinationResponse getCombinationResponse(CombinationRequest combinationRequest, int length) {
+        Combination combination = new Combination(Util.getMissingNumbers(combinationRequest.getNumbers()), 15 - length);
+        Integer[][] combinations = new Integer[Util.getInitializer(length)][];
         int i = 0;
-        while (combinacao.hasNext()) {
-            bets[i] = Util.joinArrays(combinationRequest.getNumbers(), combinacao.next());
+        while (combination.hasNext()) {
+            combinations[i] = Util.joinArrays(combinationRequest.getNumbers(), combination.next());
             i++;
         }
-        return new CombinationResponse(bets.length, bets);
+        return new CombinationResponse(combinations.length, combinations);
     }
 
     private CombinationResponse getDesdobramentoResponse(CombinationRequest combinationRequest, int length) {
-        Combinacao combinacao = new Combinacao(combinationRequest.getNumbers(), 15);
-        Integer[][] bets = new Integer[Util.getInitializer(length)][];
+        Combination combination = new Combination(combinationRequest.getNumbers(), 15);
+        Integer[][] combinations = new Integer[Util.getInitializer(length)][];
         int i = 0;
-        while (combinacao.hasNext()) {
-            bets[i] = combinacao.next();
+        while (combination.hasNext()) {
+            combinations[i] = combination.next();
             i++;
         }
-        return new CombinationResponse(bets.length, bets);
+        return new CombinationResponse(combinations.length, combinations);
     }
 
 }
