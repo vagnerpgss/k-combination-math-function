@@ -1,4 +1,4 @@
-package br.com.at.lambda.lotofacil.combination.domain;
+package br.com.at.lambda.combination.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

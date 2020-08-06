@@ -29,12 +29,12 @@ public class Util {
         });
     }
 
-    public static Integer[] getNumerosAusentes(Integer[] bet) {
-        int total = 25 - bet.length;
+    public static Integer[] getMissingNumbers(Integer[] numbers) {
+        int total = 25 - numbers.length;
         Integer[] result = new Integer[total];
         int index = 0;
         for (int i = 1; i <= 25; i++) {
-            if (!contais(bet, i)) {
+            if (!contais(numbers, i)) {
                 result[index] = i;
                 index++;
             } else if (index == total) {
@@ -44,9 +44,9 @@ public class Util {
         return result;
     }
 
-    private static boolean contais(Integer[] bet, int i) {
-        for (int j = 0; j < bet.length; j++) {
-            if (i == bet[j])
+    private static boolean contais(Integer[] numbers, int i) {
+        for (int j = 0; j < numbers.length; j++) {
+            if (i == numbers[j])
                 return true;
         }
         return false;
@@ -96,22 +96,4 @@ public class Util {
                 return 0;
         }
     }
-
-    //    private static Integer[] joinArrays(Integer[]... arrays) {
-//        int length = 0;
-//        for (Integer[] array : arrays) {
-//            length += array.length;
-//        }
-//
-//        final Integer[] result = (Integer[]) Array.newInstance(arrays[0].getClass().getComponentType(), length);
-//
-//        int offset = 0;
-//        for (Integer[] array : arrays) {
-//            System.arraycopy(array, 0, result, offset, array.length);
-//            offset += array.length;
-//        }
-//
-//        return result;
-//    }
-
 }
