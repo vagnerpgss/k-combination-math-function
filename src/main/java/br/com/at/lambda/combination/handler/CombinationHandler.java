@@ -43,9 +43,6 @@ public class CombinationHandler implements RequestHandler<ServerlessInput, Serve
         CombinationRequest combinationRequest = null;
         try {
             combinationRequest = MAPPER.readValue(body, CombinationRequest.class);
-            if (combinationRequest.getNumbers().length < 11 || combinationRequest.getNumbers().length > 18) {
-                throw new BadRequestException("Quantidade de números não permitida para geração de apostas");
-            }
         } catch (IOException e) {
             throw new BadRequestException("Body error");
         }
@@ -53,31 +50,15 @@ public class CombinationHandler implements RequestHandler<ServerlessInput, Serve
     }
 
     public CombinationResponse calc(CombinationRequest combinationRequest) {
-        int length = combinationRequest.getNumbers().length;
-        if (length >= 15) {
-            return getDesdobramentoResponse(combinationRequest, length);
-        } else {
-            return getCombinationResponse(combinationRequest, length);
-        }
+        return getCombinationResponse(combinationRequest, combinationRequest.getNumbers().length);
     }
 
     private CombinationResponse getCombinationResponse(CombinationRequest combinationRequest, int length) {
-        Combination combination = new Combination(Util.getMissingNumbers(combinationRequest.getNumbers()), 15 - length);
+        Combination combination = new Combination(Util.getMissingNumbers(combinationRequest.getNumbers()), combinationRequest.getTotal() - length);
         Integer[][] combinations = new Integer[Util.getInitializer(length)][];
         int i = 0;
         while (combination.hasNext()) {
             combinations[i] = Util.joinArrays(combinationRequest.getNumbers(), combination.next());
-            i++;
-        }
-        return new CombinationResponse(combinations.length, combinations);
-    }
-
-    private CombinationResponse getDesdobramentoResponse(CombinationRequest combinationRequest, int length) {
-        Combination combination = new Combination(combinationRequest.getNumbers(), 15);
-        Integer[][] combinations = new Integer[Util.getInitializer(length)][];
-        int i = 0;
-        while (combination.hasNext()) {
-            combinations[i] = combination.next();
             i++;
         }
         return new CombinationResponse(combinations.length, combinations);
