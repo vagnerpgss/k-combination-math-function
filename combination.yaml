@@ -1,13 +1,18 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 
+Globals:
+  Function:
+    Timeout: 40
+
 Resources:
   CombinationFunction:
     Type: 'AWS::Serverless::Function'
     Properties:
+      CodeUri: Combination
       Handler: br.com.at.lambda.combination.handler.CombinationHandler::handleRequest
       Runtime: java8
-      Timeout: 40
+      MemorySize: 512
       Events:
         Combination:
           Type: Api

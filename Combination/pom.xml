@@ -58,6 +58,5 @@
                 </executions>
             </plugin>
         </plugins>
-        <finalName>Combination</finalName>
     </build>
 </project>
