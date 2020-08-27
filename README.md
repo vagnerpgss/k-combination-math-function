@@ -16,6 +16,7 @@ Implementation of a simple mathematical combination algorithm where the order of
 
 Use `maven` to install our dependencies and package our application into a JAR file:
 ```bash
+cd Combination/
 mvn clean package
 ```
 
@@ -24,7 +25,9 @@ mvn clean package
 **Invoking function locally through local API Gateway**
 1. Start the SAM local API.
  - `sam build --template combination.yaml`
- - `sam local start-api --template combination.yaml`
+ - `sam package --output-template-file packaged.yaml --s3-bucket <some bucket name>`
+ - `sam local start-api`
+
 
 If the previous command ran successfully you should now be able to hit the following local endpoint to
 invoke the functions rooted at `http://localhost:3000/combination`
