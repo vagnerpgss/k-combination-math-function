@@ -70,30 +70,30 @@ public class Util {
         return result;
     }
 
-    public static int getInitializer(int size) {
-        switch (size) {
-            case 19:
-                return 3876;
-            case 18:
-                return 816;
-            case 17:
-                return 136;
-            case 16:
-                return 16;
-            case 15:
-                return 1;
-            case 14:
-                return 11;
-            case 13:
-                return 66;
-            case 12:
-                return 286;
-            case 11:
-                return 1001;
-            case 10:
-                return 3003;
-            default:
-                return 0;
-        }
-    }
+//    public static int getInitializer(int size) {
+//        switch (size) {
+//            case 19:
+//                return 3876;
+//            case 18:
+//                return 816;
+//            case 17:
+//                return 136;
+//            case 16:
+//                return 16;
+//            case 15:
+//                return 1;
+//            case 14:
+//                return 11;
+//            case 13:
+//                return 66;
+//            case 12:
+//                return 286;
+//            case 11:
+//                return 1001;
+//            case 10:
+//                return 3003;
+//            default:
+//                return 0;
+//        }
+//    }
 }

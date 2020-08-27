@@ -14,6 +14,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Handler for requests to Lambda function.
@@ -55,13 +58,11 @@ public class CombinationHandler implements RequestHandler<ServerlessInput, Serve
 
     private CombinationResponse getCombinationResponse(CombinationRequest combinationRequest, int length) {
         Combination combination = new Combination(Util.getMissingNumbers(combinationRequest.getNumbers()), combinationRequest.getTotal() - length);
-        Integer[][] combinations = new Integer[Util.getInitializer(length)][];
-        int i = 0;
+        List<List<Integer>> combinations = new ArrayList<Integer>();
         while (combination.hasNext()) {
-            combinations[i] = Util.joinArrays(combinationRequest.getNumbers(), combination.next());
-            i++;
+            combinations.add(Arrays.asList((Integer) Util.joinArrays(combinationRequest.getNumbers(), combination.next())));
         }
-        return new CombinationResponse(combinations.length, combinations);
+        return new CombinationResponse(combinations.size(), combinations);
     }
 
 }
