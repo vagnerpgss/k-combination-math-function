@@ -11,30 +11,30 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 public class CombinationRequest {
 
-    @JsonProperty("total")
-    private Integer total = null;
+    @JsonProperty("p")
+    private Integer p = null;
 
-    @JsonProperty("numbers")
-    private Integer[] numbers = null;
+    @JsonProperty("n")
+    private Integer[] n = null;
 
-    @JsonProperty("total")
-    public Integer getTotal() {
-        return total;
+    @JsonProperty("p")
+    public Integer getP() {
+        return p;
     }
 
-    @JsonProperty("total")
-    public void setTotal(Integer total) {
-        this.total = total;
+    @JsonProperty("p")
+    public void setP(Integer p) {
+        this.p = p;
     }
 
-    @JsonProperty("numbers")
-    public Integer[] getNumbers() {
-        return numbers;
+    @JsonProperty("n")
+    public Integer[] getN() {
+        return n;
     }
 
-    @JsonProperty("numbers")
-    public void setNumbers(Integer[] numbers) {
-        this.numbers = numbers;
+    @JsonProperty("n")
+    public void setN(Integer[] n) {
+        this.n = n;
     }
 
 }
