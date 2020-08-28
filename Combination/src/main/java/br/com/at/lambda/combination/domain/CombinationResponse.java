@@ -24,19 +24,19 @@ public class CombinationResponse {
     }
 
     @JsonProperty("combinations")
-    private Integer[] combinations = null;
+    private int[][] combinations = null;
 
     @JsonProperty("combinations")
-    public Integer[] getCombinations() {
+    public int[][] getCombinations() {
         return combinations;
     }
 
     @JsonProperty("combinations")
-    public void setCombinations(Integer[] combinations) {
+    public void setCombinations(int[][] combinations) {
         this.combinations = combinations;
     }
 
-    public CombinationResponse(int total, Integer[] combinations) {
+    public CombinationResponse(int total, int[][] combinations) {
         this.total = total;
         this.combinations = combinations;
     }

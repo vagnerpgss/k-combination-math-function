@@ -53,16 +53,18 @@ public class CombinationHandler implements RequestHandler<ServerlessInput, Serve
     }
 
     public CombinationResponse calc(CombinationRequest combinationRequest) {
-        return getCombinationResponse(combinationRequest, combinationRequest.getNumbers().length);
-    }
-
-    private CombinationResponse getCombinationResponse(CombinationRequest combinationRequest, int length) {
-        Combination combination = new Combination(Util.getMissingNumbers(combinationRequest.getNumbers()), combinationRequest.getTotal() - length);
-        List<List<Integer>> combinations = new ArrayList<Integer>();
-        while (combination.hasNext()) {
-            combinations.add(Arrays.asList((Integer) Util.joinArrays(combinationRequest.getNumbers(), combination.next())));
+        try {
+            Combination combination = new Combination(combinationRequest.getN(), combinationRequest.getP());
+            List<List<Integer>> combinations = new ArrayList<>();
+            while (combination.hasNext()) {
+                combinations.add(Arrays.asList(combination.next()));
+            }
+            return new CombinationResponse(combinations.size(), combinations.stream()
+                    .map(l -> l.stream().mapToInt(Integer::intValue).toArray())
+                    .toArray(int[][]::new));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        return new CombinationResponse(combinations.size(), combinations);
     }
-
 }
