@@ -4,6 +4,9 @@ import br.com.at.lambda.combination.handler.CombinationHandler;
 import br.com.at.lambda.model.ServerlessInput;
 import br.com.at.lambda.model.ServerlessOutput;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainTest {
 
     public static void main(String[] args) {
@@ -15,8 +18,13 @@ public class MainTest {
 
     private static ServerlessInput buildRequest() {
         ServerlessInput serverlessInput = new ServerlessInput();
-        serverlessInput.setBody("{\"p\": \"2\", \"n\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}");
+//        serverlessInput.setBody("{\"p\": \"2\", \"n\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}");
+        Map<String, String> q = new HashMap<>();
+        q.put("p", "6");
+        serverlessInput.setQueryStringParameters(q);
+        serverlessInput.setBody("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]");
         serverlessInput.setHttpMethod("POST");
         return serverlessInput;
     }
+
 }
