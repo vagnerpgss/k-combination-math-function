@@ -34,12 +34,9 @@ invoke the functions rooted at `http://localhost:3000/combination`
 
 Request Example:
 ```
-curl --location --request POST 'http://localhost:3000/combination' \
+curl --location --request POST 'http://localhost:3000/combination?p=2' \
 --header 'Content-Type: application/json' \
---data-raw '{
-    "p": "2",
-    "n": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-}'
+--data-raw '[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]'
 ```
 
 ## Bringing to the next level
