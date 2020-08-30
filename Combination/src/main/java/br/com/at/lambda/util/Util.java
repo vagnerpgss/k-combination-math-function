@@ -53,20 +53,19 @@ public class Util {
     }
 
     public static Integer[] joinArrays(Integer[] f, Integer[] s) {
-
+        if (f == null) {
+            return s;
+        }
         int idx = 0;
         final Integer[] result = new Integer[f.length + s.length];
-
         for (Integer i : f) {
             result[idx] = i;
             idx++;
         }
-
         for (Integer i : s) {
             result[idx] = i;
             idx++;
         }
-
         return result;
     }
 }
